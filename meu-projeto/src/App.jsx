@@ -36,9 +36,9 @@ function App(props) {
         Meu Cartão
       </Cartao> */}
 
-      {/* <CadastroForm /> */}
+      <CadastroForm />
 
-      <ListaDados itens={dados} />
+
 
 
 

@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, createContext, useContext } from 'react'
+import { UserContext } from '../context/UserContext';
 
 function CadastroForm() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
+  const { user, setUser } = useContext(UserContext);
 
   const handleNomeChange = (event) => {
     setNome(event.target.value);
@@ -18,7 +20,11 @@ function CadastroForm() {
       email: email,
       senha: senha,
       dataNascimento: dataNascimento
+
     };
+
+    setUser(dadosCadastro);
+    console.log(user);
 
     //Opcional para limpar campos
     setNome('');
