@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import './App.css'
-import Botao from './botao';
-import Cartao from './components/cartao';
-import CadastroForm from './components/CadastroForm';
-import ListaDados from './components/ListaDados';
+import Botao from './botao.jsx';
+import Cartao from './components/cartao.jsx';
+import CadastroForm from './components/CadastroForm.jsx';
+import ListaDados from './components/ListaDados.jsx';
 import { UserContextProvider } from './context/UserContext.jsx'
 import CicloVida from './components/CicloVida.jsx';
 import { Eventos } from './components/Eventos.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { addDoc, collection, getDocs } from 'firebase/firestore'
 
 const dados = [
   { id: 1, texto: "Monza" },
