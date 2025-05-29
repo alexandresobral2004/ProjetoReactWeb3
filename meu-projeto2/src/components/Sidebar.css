@@ -1,0 +1,41 @@
+/* src/components/Sidebar.css */
+
+.sidebar-container {
+  width: 10rem;      /* Largura fixa da sidebar */
+  height: 100vh;     /* Altura total da tela */
+  position: sticky;  /* Fica fixo na tela ao rolar */
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Sombra sutil para dar profundidade */
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  text-align: center;
+  background-color: #e9ecef; /* Um fundo levemente diferente para o cabeçalho */
+}
+
+.sidebar-link {
+  color: #333;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  transition: background-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-link:hover {
+  background-color: #0d6efd;
+  color: white;
+}
+
+/* Estilo para o link ATIVO. 
+  O NavLink adiciona a classe .active automaticamente.
+*/
+/* .sidebar-link.active {
+  background-color: #0d6efd; 
+  color: white;
+  font-weight: bold;
+} */

@@ -1,61 +1,26 @@
 import { useState } from 'react'
 import './App.css'
-import Botao from './botao.jsx';
-import Cartao from './components/cartao.jsx';
-import CadastroForm from './components/CadastroForm.jsx';
-import ListaDados from './components/ListaDados.jsx';
-import { UserContextProvider } from './context/UserContext.jsx'
-import CicloVida from './components/CicloVida.jsx';
-import { Eventos } from './components/Eventos.jsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { addDoc, collection, getDocs } from 'firebase/firestore'
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"></link>
+import Login from './login';
+import Home from './pages/Home';
 
-const dados = [
-  { id: 1, texto: "Monza" },
-  { id: 2, texto: "Del Rey" },
-  { id: 3, texto: "D20" },
-  { id: 4, texto: "D10" },
-  { id: 5, texto: "Chevete" }
-
-]
 
 
 
 function App(props) {
-  const [count, setCount] = useState(0)
 
-  const [user, setUser] = useState(null);
-
-  const increment = () => setCount(count + 1);
-
-  const decrement = () => setCount(count - 1);
 
   return (
-    <>
-      <UserContextProvider value={{ user, setUser }} >
-
-        {/* <h1>Contador:{count}</h1> */}
-        {/* <Botao text="+" onClick={increment} />
-
-      <Botao text="-" onClick={decrement} /> */}
-
-
-        {/* <Cartao nome="João" idade={40} imagemURL="/img/joao.png" >
-        Meu Cartão
-      </Cartao> */}
-
-        <CadastroForm />
-
-        {/* <CicloVida /> */}
-
-
-        <Eventos nome="Visitante" />
-
-
-
-
-      </UserContextProvider>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        {/* <Route path="/sobre" element={<Sobre />} />
+        <Route path="/contato" element={<Contato />} /> */}
+      </Routes>
+    </Router>
   )
 }
 
