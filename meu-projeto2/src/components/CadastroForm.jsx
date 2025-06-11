@@ -3,6 +3,7 @@ import './style.css'
 import { db } from '../services/firebaseConnection'
 import { addDoc, collection, getDocs } from 'firebase/firestore'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Card, Button, Container, Row, Col, Form } from 'react-bootstrap';
 function CadastroForm() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -37,124 +38,92 @@ function CadastroForm() {
 
 
 
-
-
-
-
-
-
-  // function listaUsers(users) {
-  //   if (!users || !Array.isArray(users) || users.length === 0) {
-  //     return <p>Não há usuários cadastrados</p>
-  //   }
-  //   else {
-  //     // CORREÇÃO: Adicione 'return' aqui
-  //     return (
-  //       <ul>
-  //         {/*
-  //           O método .map() é a forma padrão de renderizar listas no React.
-  //           Para cada 'user' no array 'users', ele retorna um elemento <li> JSX.
-  //         */}
-  //         {users.map((user) => (
-  //           // A propriedade 'key' é CRUCIAL aqui. Ela deve ser uma string única e estável
-  //           // para cada item na lista. O 'id' do usuário é perfeito para isso.
-  //           // Se seu objeto não tem 'id', você pode usar o 'index' do map, mas com ressalvas.
-  //           // Exemplo: <li key={user.id || index} className="user-card">
-  //           <li key={user.nome} > {/* Assumindo que user.id existe e é único */}
-  //             <p><strong>Nome:</strong> {user.nome}</p>
-  //             <p><strong>Email:</strong> {user.email}</p>
-  //             {/* ATENÇÃO: NUNCA EXIBA SENHAS NO FRONT-END POR SEGURANÇA! */}
-  //             {/* <p><strong>Senha:</strong> {user.senha}</p> <-- REMOVA ESTA LINHA EM PROD */}
-  //             <p><strong>Data de Nascimento:</strong> {user.dataNascimento}</p>
-  //           </li>
-  //         ))}
-  //       </ul>
-  //     );
-  //   }
-  // }
-
-
-
-
-
   return (
 
+    // Usamos um Container para centralizar e controlar a largura máxima
+    <Container className="mt-1" style={{ maxWidth: '700px' }}>
+      {/* 2. O Card cria a borda e o fundo, dando um look profissional */}
+      <Card>
+        <Card.Body>
+          <Card.Title as="h2" className="text-center mb-4">Formulário de Cadastro</Card.Title>
 
-    <div className="container d-flex flex-column align-items-center"> {/* Container para centralizar e dar espaçamento */}
-      <h2>Formulário de Cadastro</h2>
-      <form onSubmit={handleSubmit}>
-        {/* Linha para Nome e Email */}
-        <div className="row mb-12"> {/* mb83 adiciona margem inferior para espaçamento */}
-          <div className="col-md-12"> {/* Ocupa metade da largura em telas médias e maiores */}
-            <div className="form-group">
-              <label htmlFor="nome">Nome:</label>
-              <input
-                type="text"
-                className="form-control"
-                id="nome"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-                placeholder="Digite seu nome"
-              // Campo obrigatório
-              />
+          {/* O componente Form já vem com a tag <form> e funcionalidades extras */}
+          <Form onSubmit={handleSubmit}>
+
+            {/* 3. A Mágica do Formulário Horizontal */}
+            {/* O 'as={Row}' transforma o Form.Group em uma linha do grid. */}
+            {/* 'controlId' conecta o Label ao Input (bom para acessibilidade). */}
+            <Form.Group as={Row} className="mb-3" controlId="formHorizontalNome">
+              {/* O Label ocupa 3 de 12 colunas em telas pequenas (sm) ou maiores */}
+              <Form.Label column sm={3}>
+                Nome:
+              </Form.Label>
+              <Col sm={9}>
+                <Form.Control
+                  type="text"
+                  placeholder="Digite seu nome completo"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                  required // Adicionando validação básica
+                />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+              <Form.Label column sm={3}>
+                Email:
+              </Form.Label>
+              <Col sm={9}>
+                <Form.Control
+                  type="email"
+                  placeholder="seu.email@exemplo.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} className="mb-3" controlId="formHorizontalSenha">
+              <Form.Label column sm={3}>
+                Senha:
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="password"
+                  placeholder="Crie uma senha forte"
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                  required
+                />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} className="mb-3" controlId="formHorizontalDataNascimento">
+              <Form.Label column sm={3}>
+                Data de Nascimento:
+              </Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="date"
+                  value={dataNascimento}
+                  onChange={(e) => setDataNascimento(e.target.value)}
+                  required
+                />
+              </Col>
+            </Form.Group>
+
+            {/* Centralizando o botão de envio */}
+            <div className="d-grid gap-2 mt-4 w-25">
+              <Button variant="primary" type="submit" size="md">
+                Cadastrar
+              </Button>
             </div>
-          </div>
-        </div>
-        <div className="row mb-12">
-          <div className="col-md-12">
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Digite seu email"
 
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Linha para Senha e Data de Nascimento */}
-        <div className="row mb-12">
-          <div className="col-md-12">
-            <div className="form-group">
-              <label htmlFor="senha">Senha:</label>
-              <input
-                type="password"
-                className="form-control"
-                id="senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                placeholder="Crie uma senha"
-
-              />
-            </div>
-          </div>
-        </div>
-        <div className="row mb-12">
-          <div className="col-md-12">
-            <div className="form-group">
-              <label htmlFor="dataNascimento">Data de Nascimento:</label>
-              <input
-                type="date"
-                className="form-control"
-                id="dataNascimento"
-                value={dataNascimento}
-                onChange={(e) => setDataNascimento(e.target.value)}
-
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Botão de Envio */}
-        <button type="submit" className="btn btn-primary mt-5">Cadastrar</button>
-      </form >
-    </div >
-
+          </Form>
+        </Card.Body>
+      </Card>
+    </Container>
 
   )
 }

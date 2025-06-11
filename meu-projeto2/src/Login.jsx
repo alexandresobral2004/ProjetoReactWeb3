@@ -38,7 +38,7 @@ function Login() {
   return (
     <div className="container-fluid">
       <div className="row justify-content-center">
-        <div className="col-md-12 col-lg-12">
+        <div className="col-md-5 col-lg-5 mt-5">
           <div className="card">
             <div className="card-body">
               <h3 className="card-title text-center mb-4">Login</h3>

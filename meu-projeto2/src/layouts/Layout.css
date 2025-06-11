@@ -1,0 +1,12 @@
+/* src/layouts/MainLayout.css */
+
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content-area {
+  flex-grow: 1; /* Ocupa o espaço restante */
+  padding: 2rem;
+  background-color: #f8f9fa;
+}
